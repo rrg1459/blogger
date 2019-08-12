@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
 	include ArticlesHelper
 
 	def index
+		@count = Tag.count
 		@articles = Article.all
 	end
 

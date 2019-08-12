@@ -1,5 +1,7 @@
 <h1>All Articles</h1>
 
+<p><%= link_to 'See all tags', tags_path if @count > 0 %></p><br>
+
 <ul id="articles">
 	<% @articles.each do |article| %>
 		<li>
@@ -9,3 +11,5 @@
 </ul>
 
 <%= link_to "Create a New Article", new_article_path, class: "new_article" %>
+
+<!--
