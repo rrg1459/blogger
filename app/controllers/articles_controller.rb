@@ -19,9 +19,21 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
-		@article.save
+#		@article.id = 999
+#		@article.save
+
+   if @article.save
+#       flash[:notice] = "Your Article was Created"
+ #      redirect_to article_path(@article)
 		flash.notice = "Article '#{@article.title}' created!"
 		redirect_to article_path(@article)
+    else
+       render 'new'
+    end    
+		
+		p '----------------------'
+		p @article.inspect
+		p '----------------------'
 	end
 
 	def edit
