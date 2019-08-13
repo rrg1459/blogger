@@ -13,10 +13,25 @@
 
 		<p class="flash"><%= flash.notice %></p>
 
-		<%= yield %>
+		<div id="container">
+			<div id="content">
+				<%= yield %>
+				<br>
+				<%= link_to "Principal", root_path if request.env['PATH_INFO'] != '/' && request.env['PATH_INFO'] != '/articles' %>
+				<hr>
+				<h6>
+				<% if logged_in? %>
+					<%= "Logged in as #{current_user.email}" %>
+					<%= link_to "logout", logout_path %>
+				<% else %>
+					<%= link_to "login", login_path if params[:controller] != 'author_sessions' %>
+					<%= '|' if params[:controller] != 'authors' && params[:controller] != 'author_sessions' %>
+					<%= link_to "Sign In", new_author_path  if params[:controller] != 'authors' %>
+				<% end %>
+				</h6>
+			</div>
+		</div>
 
-		<br>
-		<%= link_to "Principal", root_path %>
 
 	</body>
 </html>
